@@ -1,25 +1,25 @@
 /サイドバーのアークアップ
 %header.header-nav
  %h1.header-nav__info チャットグループが作成されました
-%div.fullScreen
- %div.sideBar
+.fullScreen
+ .sideBar
   %i.fa.fa-cog
   %i.fa.fa-edit
-  %div.user
-   %div.user__info seo
+  .user
+   .user__info seo
   = render 'group'
- %div.chat-screen
-  %div.group-screen
-   %div.groupBox
-    %div.groupBox__title Tech::Camp
+ .chat-screen
+  .group-screen
+   .groupBox
+    .groupBox__title Tech::Camp
     %ul.groupBox__members Members :
     %li.groupBox__member iwamoto
-   %div.editBox
+   .editBox
     %a.editBox__editButton Edit
   = render 'message'
-  %div.form
+  .form
    %input.form__message{:value => "type a message"}
-    %div.form__image
+    .form__image
      %label.upload-label{for: "upload-icon"}
      %i.fa.fa-picture-o
    %input.form__submit{:value => "Send"}
