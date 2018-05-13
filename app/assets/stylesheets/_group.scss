@@ -1,37 +1,26 @@
- .group {
+// .group1 {
+//   display: block;
+//   height: 100px;
+//   margin-top: 20px;
+//   &__info {
+//     color: white;
+//     font-size: 15px;
+//   }
+//   &__info-context {
+//     color: white;
+//     margin-top: 5px;
+//     margin-bottom: 40px;
+//     font-size: 11px;
+//   }
+// }
+.group {
   display: block;
   margin-bottom: 40px;
-  &__info {
-  color: white;
-  font-size: 15px;
-  }
-  &__info-context {
-  color: white;
-  margin-top: 5px;
-  font-size: 11px;
-  }
-}
-.group2 {
-  display: block;
-  margin-bottom: 40px;
-  &__info {
-  color: white;
-  font-size: 15px;
-  }
-  &__info-context {
-  color: white;
-  margin-top: 5px;
-  font-size: 11px;
-  }
-}
-  .group3 {
-    display: block;
-    margin-bottom: 40px;
-    &__info {
+    &__name {
     color: white;
     font-size: 15px;
     }
-    &__info-context {
+    &__name-context {
     color: white;
     margin-top: 5px;
     font-size: 11px;
