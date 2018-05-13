@@ -1,8 +1,3 @@
-.fullScreen {
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
 .sideBar {
   display: block;
   background-color: #2f3e51;
@@ -10,12 +5,11 @@
   height: 800px;
   padding-left: 20px;
   padding-right: 20px;
-}
-
-.user {
-  height: 100px;
-  background-color:253141;
-  &__info {
+  &__header {
+    height: 100px;
+    background-color:253141;
+  }
+  &__header-info {
     color: white;
     font-size: 20px Bold;
     float: left;
@@ -24,6 +18,7 @@
     height: 30px;
   }
 }
+
 i.fa.fa-edit {
   display: inline;
   float: right;
@@ -37,19 +32,5 @@ i.fa.fa-cog {
   padding-top: 30px;
 }
 
-.group1 {
-  display: block;
-  height: 100px;
-  margin-top: 20px;
-  &__info {
-    color: white;
-    font-size: 15px;
-  }
-  &__info-context {
-    color: white;
-    margin-top: 5px;
-    margin-bottom: 40px;
-    font-size: 11px;
-  }
-}
+
 
