@@ -2,24 +2,25 @@
 / %header.header-nav
 /  %h1.header-nav__info チャットグループが作成されました
 .fullScreen
- .sideBar
-  %i.fa.fa-cog
-  %i.fa.fa-edit
-  .user
-   .user__info seo
-  = render 'group'
- .chat-screen
-  .group-screen
-   .groupBox
-    .groupBox__title Tech::Camp
-    %ul.groupBox__members Members :
-    %li.groupBox__member iwamoto
-   .editBox
-    %a.editBox__editButton Edit
-  = render 'message'
-  .form
-   %input.form__message{:value => "type a message"}
-    .form__image
-     %label.upload-label{for: "upload-icon"}
-     %i.fa.fa-picture-o
-   %input.form__submit{:value => "Send"}
+  .sideBar
+    %i.fa.fa-cog
+    %i.fa.fa-edit
+    .sideBar__header
+      .sideBar__header-info seo
+    = render 'group'
+  .chat-screen
+    .group-screen
+      .groupBox
+        .groupBox__title Tech::Camp
+        %ul.groupBox__members Members :
+        %li.groupBox__member iwamoto
+      .editBox
+        %a.editBox__editButton Edit
+    .messages-screen
+      = render 'message'
+    .form
+      %input.form__message{:value => "type a message"}
+      .form__image
+        %label.upload-label{for: "upload-icon"}
+        %i.fa.fa-picture-o
+      %input.form__submit{:value => "Send"}
