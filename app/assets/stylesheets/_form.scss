@@ -25,17 +25,18 @@
     padding-bottom: 2px;
     float: right;
   }
-}
-.form__image {
-  height: 50px;
-  width: 30px;
-  margin-top: 19px;
-  float: left;
-  background-color: white;
-  margin-right: 10px;
-}
 
-i.fa.fa-picture-o {
-  margin-top: 19px;
-  margin-left: 5px;
+  .form__image {
+    height: 50px;
+    width: 30px;
+    margin-top: 19px;
+    float: left;
+    background-color: white;
+    margin-right: 10px;
+  }
+
+  i.fa.fa-picture-o {
+    margin-top: 19px;
+    margin-left: 5px;
+  }
 }
