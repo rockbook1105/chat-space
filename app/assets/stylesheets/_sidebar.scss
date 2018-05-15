@@ -10,30 +10,30 @@
     height: 800px;
     padding-left: 20px;
     padding-right: 20px;
-    &__header {
+    .header {
       height: 100px;
       background-color:253141;
+      &__name {
+        color: white;
+        font-size: 20px Bold;
+        float: left;
+        width: 100px;
+        padding-top: 35px;
+        height: 30px;
+      }
     }
-    &__header-info {
-      color: white;
-      font-size: 20px Bold;
-      float: left;
-      width: 100px;
-      padding-top: 35px;
-      height: 30px;
+    i.fa.fa-edit {
+      display: inline;
+      float: right;
+      margin-top: 10px;
+      padding-top: 30px;
     }
-  i.fa.fa-edit {
-    display: inline;
-    float: right;
-    margin-top: 10px;
-    padding-top: 30px;
-  }
-  i.fa.fa-cog {
-    display: inline;
-    float: right;
-    margin-top: 10px;
-    padding-top: 30px;
-  }
+    i.fa.fa-cog {
+      display: inline;
+      float: right;
+      margin-top: 10px;
+      padding-top: 30px;
+    }
   }
 }
 
