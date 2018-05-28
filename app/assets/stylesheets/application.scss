@@ -1,11 +1,11 @@
-@import "modules/user";
 @import "config/colors";
+@import "modules/user";
 @import "modules/flash";
+@import "modules/group";
+@import "modules/chat";
+@import "modules/side_bar";
 @import "./reset";
 @import "./variable";
 @import "font-awesome";
-@import "_header.scss";
-@import "_sidebar.scss";
-@import "_form.scss";
-@import "_message.scss";
-@import "_group.scss";
+@import "message.scss";
+
