@@ -4,14 +4,14 @@
     .header
       .left-header
         .left-header__title
-          messages
+          = @group.name
         %ul.left-header__members
           Members :
           %li.member
-            group.name
+            = @group.messages.name
       .right-header
-        .right-header__button Edit
-    .messages
+        = link_to "Edit", edit_group_path(@group), method: :get, class: 'right-header__button'
+    .messages#message
       = render partial: 'message', collection: @messages
     .form
       = form_for [@group, @message] do |f|
