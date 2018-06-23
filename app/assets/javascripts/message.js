@@ -1,33 +1,51 @@
 $(function(){
   function buildHTML(message){
+    if (message.image.url == null){
       var html = `<div class= "message">
                     <div class="upper-message">
-                      <div class="upper-message__user-name">${ message.user.name }
+                      <div class="upper-message__user-name">${ message.user_name }
                       </div>
                       <div class="upper-message__date">${ message.created_at }
                       </div>
                     </div>
                     <div class="lower-messagge">
-                      <% if message.content.present? %>
-                      <p class="lower-messagge__content">${ message.content }
-                      </p>
-                      <% if message.image.present? %>
-                        <img src="${ message.image.url } width:"256" height:"256">
-                        <% end %>
-                      <% end %>
+                    <p class="lower-messagge__content">${ message.content }
+                    </p>
+                    </div>
+                  </div>`
+      return html;
+    }else{
+      var html = `<div class= "message">
+                    <div class="upper-message">
+                      <div class="upper-message__user-name">${ message.user_name }
+                      </div>
+                      <div class="upper-message__date">${ message.created_at }
+                      </div>
+                    </div>
+                    <div class="lower-messagge">
+                    <p class="lower-messagge__content">${ message.content }
+                    </p>
+                    <img src="${message.image.url}" width="256", height="256">
                     </div>
                   </div>`
       return html;
     }
+    }
 
-
+    // function scrollMessage() {
+    //   var messageHeight = $('.messages')[0].top;
+    //   $('.messages').animate({
+    //     scrollTop: messageHeight
+    //   }, 'slow', 'swing')
+    // }
     $('#new_message').on('submit', function(e) {
       e.preventDefault();
       var formData = new FormData(this);
-      var href = $(this).attr('action')
+      var url = $(this).attr('action');
+      $('.form__submit').removeAttr('data-disable-with')
       $.ajax({
-        url: href,
-        type: "POST",
+        url: url,
+        type: 'POST',
         data: formData,
         dataType: 'json',
         processData: false,
@@ -35,8 +53,12 @@ $(function(){
       })
       .done(function(data) {
         var html = buildHTML(data);
-        $('.message').append(html)
-        $('#message_content').val('')
-        });
+        $(".messages").append(html);
+        console.log(html)
+        $('#new_message').prop("disable", true);
+        $('#new_message')[0].reset();
+        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
+      });
     });
-})
+});
+// .animate({ scrollTop: $('.messages').scrollHeight }, 'fast');
