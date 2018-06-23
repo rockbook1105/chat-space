@@ -32,12 +32,6 @@ $(function(){
     }
     }
 
-    // function scrollMessage() {
-    //   var messageHeight = $('.messages')[0].top;
-    //   $('.messages').animate({
-    //     scrollTop: messageHeight
-    //   }, 'slow', 'swing')
-    // }
     $('#new_message').on('submit', function(e) {
       e.preventDefault();
       var formData = new FormData(this);
@@ -61,4 +55,4 @@ $(function(){
       });
     });
 });
-// .animate({ scrollTop: $('.messages').scrollHeight }, 'fast');
+
