@@ -32,15 +32,15 @@
         }
       }
       .right-header {
-        border: 1px solid white;
-        color: blue;
+        border: 1px solid skyblue;
+        color: skyblue;
         float: right;
         height: 40px;
         line-height: 40px;
         margin-top: 28px;
         padding: 0 20px;
         &__button {
-          color: blue;
+          color: skyblue;
           text-decoration: none;
         }
       }
@@ -62,7 +62,7 @@
             font-weight: bold;
           }
           &__date {
-            color: $light_gray;
+            color: black;
             font-size: 12px;
             padding-left: 10px;
           }
