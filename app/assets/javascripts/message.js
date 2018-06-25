@@ -1,6 +1,8 @@
 $(function(){
   function buildHTML(message){
     if (message.image.url == null){
+      message.image.url = ""
+    }
       var html = `<div class= "message">
                     <div class="upper-message">
                       <div class="upper-message__user-name">${ message.user_name }
@@ -11,25 +13,15 @@ $(function(){
                     <div class="lower-messagge">
                     <p class="lower-messagge__content">${ message.content }
                     </p>
-                    </div>
-                  </div>`
-      return html;
-    }else{
-      var html = `<div class= "message">
-                    <div class="upper-message">
-                      <div class="upper-message__user-name">${ message.user_name }
-                      </div>
-                      <div class="upper-message__date">${ message.created_at }
-                      </div>
-                    </div>
-                    <div class="lower-messagge">
-                    <p class="lower-messagge__content">${ message.content }
-                    </p>
-                    <img src="${message.image.url}" width="256", height="256">
+                    <img src="${message.image.url}" size=256>
                     </div>
                   </div>`
       return html;
     }
+
+
+    function scrollMessage() {
+      $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
     }
 
     $('#new_message').on('submit', function(e) {
@@ -51,7 +43,7 @@ $(function(){
         console.log(html)
         $('#new_message').prop("disable", true);
         $('#new_message')[0].reset();
-        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast')
+        scrollMessage()
       });
     });
 });
