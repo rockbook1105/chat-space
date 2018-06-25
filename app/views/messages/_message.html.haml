@@ -1,4 +1,11 @@
-.message
-  .message__user-name イワモトタカユキ
-  .message__user-createDate 2018/04/25 19:50
-  .message__user-content techテク
+.message{'message-id': message.id}
+  .upper-message
+    .upper-message__user-name
+      = message.user.name
+    .upper-message__date
+      = message.created_at.strftime("%Y年%M月%d日 %H:%M")
+  .lower-meesage
+    - if message.content.present?
+      %p.lower-message__content
+        = message.content
+    = image_tag message.image, class: 'lower-message__image' if message.image.present?

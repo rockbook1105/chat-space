@@ -1,26 +1,23 @@
-/サイドバーのアークアップ
-/ %header.header-nav
-/  %h1.header-nav__info チャットグループが作成されました
-.fullScreen
-  .sideBar
-    %i.fa.fa-cog
-    %i.fa.fa-edit
+.wrapper
+  = render 'shared/side_bar'
+  .chat
     .header
-      .header__name seo
-    = render 'group'
-  .chat-screen
-    .group-screen
-      .groupBox
-        .groupBox__title Tech::Camp
-        %ul.groupBox__members Members :
-        %li.groupBox__member iwamoto
-      .editBox
-        %a.editBox__editButton Edit
-    .messages-screen
-      = render 'message'
+      .left-header
+        .left-header__title
+          = @group.name
+        %ul.left-header__members
+          Members :
+          %li.member
+            = @group.messages.name
+      .right-header
+        = link_to "Edit", edit_group_path(@group), method: :get, class: 'right-header__button'
+    .messages#message
+      = render partial: 'message', collection: @messages
     .form
-      %input.form__message{:value => "type a message"}
-      .form__image
-        %label.upload-label{for: "upload-icon"}
-        %i.fa.fa-picture-o
-      %input.form__submit{:value => "Send"}
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'fa fa-image'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
