@@ -13,7 +13,7 @@ $(function(){
                     <div class="lower-messagge">
                     <p class="lower-messagge__content">${ message.content }
                     </p>
-                    <img src="${message.image.url}" size=256>
+                    <img src="${message.image.url}",size="256">
                     </div>
                   </div>`
       return html;
