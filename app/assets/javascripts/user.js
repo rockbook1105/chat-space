@@ -29,9 +29,6 @@ $(function() {
 
   $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
-    var inputs = input.split(" ");
-    var newInputs = inputs.map(editElement);
-    var reg = RegExp(newInputs.join("|"));
 
     $.ajax({
       type: 'GET',
