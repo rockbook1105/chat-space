@@ -10,16 +10,6 @@ $(function() {
      $('.user-search-result').append(html);
   }
 
-  function appendNoUser(message){
-    var html =`<div class="chat-group-user clearfix">
-                 <div class="chat-group-user__messagge">
-                   <div class="chat-group-user__message-list">${message}
-                   </div>
-                 </div>
-               </div>`
-    $('.user-search-result').append(html);
-  }
-
   function addUser(id,name) {
     var html = `<div class='chat-group-user clearfix' id='chat-group-user-${ id }'>
                 <input name='group[user_ids][]' type='hidden' value='${ id }'>
@@ -50,7 +40,7 @@ $(function() {
           });
         }
         if (input == ""){
-          appendNoUser("一致するユーザーはいません")
+          $('.user-search-result').remove();
         }
         word = searchElements
       })
