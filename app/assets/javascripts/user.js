@@ -1,13 +1,11 @@
 $(function() {
 
-  var word = ""
-
   function appendSearchUser(user){
     var html = `<div class="chat-group-user clearfix id='chat-group-user-${ user.id }'">
                   <p class="chat-group-user__name">${ user.name }</p>
-                  <a class="user-search-add chat-group-user__btn id='chat-group-user__btn--add'" data-user-id=${ user.id } data-user-name=${ user.name }>追加</a>
+                  <a class="user-search-add chat-group-user__btn js-search-add id='chat-group-user__btn--add'" data-user-id=${ user.id } data-user-name=${ user.name }>追加</a>
                 </div>`
-     $('.user-search-result').append(html);
+     $('#user-search-result').append(html);
   }
 
   function addUser(id,name) {
@@ -24,39 +22,38 @@ $(function() {
     var input = $("#user-search-field").val();
     var newInputs = input.split(" ").filter(function(e){return e;});
     var searchElements = newInputs.join("|");
-    var reg = new RegExp(searchElements)
+    console.log(searchElements)
       $.ajax({
         type: 'GET',
         url: '/users',
-        data: { keyword: reg },
+        data: { keyword: searchElements },
         dataType: 'json'
       })
       .done(function(users){
-        if(input.length != 0 && searchElements != word){
+        if(input.length != 0){
           $.each(users, function(i, user){
-            if(user.name.match(reg) && searchElements.length < 2){
+            if(searchElements.length < 2){
               appendSearchUser(user);
             }
           });
         }
         if (input == ""){
-          $('.user-search-result').remove();
+          $('#user-search-result').remove();
         }
-        word = searchElements
       })
       .fail(function(){
         alert('error');
       });
   });
 
-  $(".user-search-result").on("click",'.chat-group-user__btn',function(){
+  $("#user-search-result").on("click",'.js-search-add',function(){
     $(this).parent('.chat-group-user').remove();
     var id = $(this).data("user-id");
     var name = $(this).data("user-name");
     addUser(id, name);
   });
 
-  $('#chat-group-users').on('click', '.user-search-remove', function(){
+  $('#chat-group-users').on('click', '.js-remove-btn', function(){
     $(this).parent().remove();
   })
 });
