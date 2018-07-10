@@ -22,7 +22,6 @@ $(function() {
     var input = $("#user-search-field").val();
     var newInputs = input.split(" ").filter(function(e){return e;});
     var searchElements = newInputs.join("|");
-    console.log(searchElements)
       $.ajax({
         type: 'GET',
         url: '/users',
@@ -30,13 +29,11 @@ $(function() {
         dataType: 'json'
       })
       .done(function(users){
-        if(input.length != 0){
-          $.each(users, function(i, user){
+          users.forEach(function(user){
             if(searchElements.length < 2){
               appendSearchUser(user);
             }
           });
-        }
         if (input == ""){
           $('#user-search-result').remove();
         }
