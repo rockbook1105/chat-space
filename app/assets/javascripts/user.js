@@ -20,27 +20,26 @@ $(function() {
   $("#user-search-field").on("keyup", function(e) {
     e.preventDefault()
     var input = $("#user-search-field").val();
-    var newInputs = input.split(" ").filter(function(e){return e;});
-    var searchElements = newInputs.join("|");
+    if(input !== ""){
       $.ajax({
         type: 'GET',
         url: '/users',
-        data: { keyword: searchElements },
+        data: { keyword: input },
         dataType: 'json'
       })
       .done(function(users){
+        $('#user-search-result').empty();
           users.forEach(function(user){
-            if(searchElements.length < 2){
               appendSearchUser(user);
-            }
           });
-        if (input == ""){
-          $('#user-search-result').remove();
-        }
       })
       .fail(function(){
         alert('error');
       });
+    }
+    else{
+      $('#user-search-result').remove();
+    }
   });
 
   $("#user-search-result").on("click",'.js-search-add',function(){
