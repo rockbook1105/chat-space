@@ -43,7 +43,7 @@ $(function() {
   });
 
   $("#user-search-result").on("click",'.js-search-add',function(){
-    $(this).parent('.chat-group-user').remove();
+    $(this).parent().remove();
     var id = $(this).data("user-id");
     var name = $(this).data("user-name");
     addUser(id, name);
