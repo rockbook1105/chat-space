@@ -5,13 +5,13 @@ $(function(){
     }
       var html = `<div class= "message" data-message-id="${message.id}">
                     <div class="upper-message">
-                      <div class="upper-message__user-name">${ message.user_name }
+                      <div class="upper-message__user-name">${ message.name }
                       </div>
                       <div class="upper-message__date">${ message.created_at }
                       </div>
                     </div>
                     <div class="lower-messagge">
-                    <p class="lower-messagge__content">${ message.content }
+                    <p class="lower-messagge__content">${ message.text }
                     </p>
                     <img src="${message.image.url}",size="256">
                     </div>
@@ -46,32 +46,36 @@ $(function(){
       });
     });
 
-  $(function(){
-    if(location.href.match(/\/groups\/\d+\/messages/)){
-      setInterval(messageUpdate, 5000);
+  var autoReload = setInterval(function(){
+    if(location.pathname.match(/\/groups\/\d+\/messages/)){
+      messageUpdate();
+    }else{
+      clearInterval(autoReload);
     }
-  });
+  }, 5000);
+
     function messageUpdate(){
-      if($('.message')[0]){
-        var message_id = $('.message').last().data('message-id');
-        console.log(message_id)
-      }else{
-        return false
-      }
+      // if($('.message')[0]){
+        var messageId = $('.message').last().data('message-id');
+        console.log(messageId)
+      // }else{
+        // return false
+      // }
 
     $.ajax({
       url: location.href,
       type: "GET",
-      data: { id: message_id },
+      data: { id: messageId },
       dataType: 'json'
     })
-    .done(function(messages){
-      console.log(messages)
-      if(messages.length){
-      $.each(messages, function(i, messagge){
+    .done(function(data){
+      console.log(data)
+      if(data.length){
+      $.each(data, function(i, message){
         var insert_html = buildHTML(message);
         $('.messages').append(insert_html);
         scrollMessage()
+        console.log("自動更新に成功しました!")
       });
     }
     })
