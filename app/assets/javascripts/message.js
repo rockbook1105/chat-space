@@ -48,7 +48,7 @@ $(function(){
     });
 
   var autoReload = setInterval(function(){
-    if(location.href.match(/\/groups\/\d+\/messages/)){
+    if(location.pathname.match(/\/groups\/\d+\/messages/)){
       messageUpdate();
     }else{
       clearInterval(autoReload);
