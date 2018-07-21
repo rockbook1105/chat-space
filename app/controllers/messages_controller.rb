@@ -1,9 +1,10 @@
 class MessagesController < ApplicationController
-  before_action :set_group, :set_user, :set_time
+  before_action :set_group
 
   def index
     @message = Message.new
     @messages = @group.messages.includes(:user)
+    @users = @group.users
     respond_to do |format|
       format.html
       format.json { @new_messages = @messages.where('id > ?', params[:id]) }
@@ -30,14 +31,6 @@ class MessagesController < ApplicationController
 
   def set_group
     @group = Group.find(params[:group_id])
-  end
-
-  def set_user
-    @users = @group.users
-  end
-
-  def set_time
-    Time.zone = 'Tokyo'
   end
 
 end
