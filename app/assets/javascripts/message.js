@@ -1,19 +1,20 @@
 $(function(){
   function buildHTML(message){
-    if (message.image.url == null){
-      message.image.url = ""
+    var addImage = '';
+    if (message.image){
+      addImage = `<img src="${message.image}",size="256", class= "lower-message__image">`
     }
-      var html = `<div class= "message">
+      var html = `<div class= "message" data-message-id="${message.id}">
                     <div class="upper-message">
-                      <div class="upper-message__user-name">${ message.user_name }
+                      <div class="upper-message__user-name">${ message.name }
                       </div>
                       <div class="upper-message__date">${ message.created_at }
                       </div>
                     </div>
-                    <div class="lower-messagge">
-                    <p class="lower-messagge__content">${ message.content }
+                    <div class="lower-message">
+                    <p class="lower-message__content">${ message.text }
                     </p>
-                    <img src="${message.image.url}",size="256">
+                    ${addImage}
                     </div>
                   </div>`
       return html;
@@ -40,11 +41,40 @@ $(function(){
       .done(function(data) {
         var html = buildHTML(data);
         $(".messages").append(html);
-        console.log(html)
-        $('#new_message').prop("disable", true);
+        $('#new_message').prop("disable", false);
         $('#new_message')[0].reset();
         scrollMessage()
       });
     });
-});
 
+  var autoReload = setInterval(function(){
+    if(location.pathname.match(/\/groups\/\d+\/messages/)){
+      messageUpdate();
+    }else{
+      clearInterval(autoReload);
+    }
+  }, 5000);
+
+    function messageUpdate(){
+        var messageId = $('.message').last().data('message-id');
+
+    $.ajax({
+      url: location.href,
+      type: "GET",
+      data: { id: messageId },
+      dataType: 'json'
+    })
+    .done(function(data){
+      if(data.length){
+      data.forEach(function(message){
+        var insert_html = buildHTML(message);
+        $('.messages').append(insert_html);
+        scrollMessage()
+      });
+    }
+    })
+    .fail(function(data){
+      alert('メッセージの更新に失敗しました')
+    })
+  }
+});
